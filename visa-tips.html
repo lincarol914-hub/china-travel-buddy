@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Visa Tips | China Travel Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Questrial&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--maroon:#6B2D2D;--maroon-dark:#4e1f1f;--maroon-light:#8a3a3a;--gold:#c9a84c;--gold-light:#e8d5a3;--white:#fff;--off-white:#f8f4f0;--dark:#1a1a1a;--gray:#555;--light-gray:#e8e0d8;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Questrial',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,45,45,0.1);}
+    nav.scrolled{box-shadow:0 4px 24px rgba(107,45,45,0.12);}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{width:40px;height:40px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:'Syne',sans-serif;font-weight:800;font-size:14px;}
+    .nav-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--dark);}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--dark);font-size:14px;padding:8px 14px;border-radius:6px;transition:background 0.2s,color 0.2s;}
+    .nav-links a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a::after{content:" \25BE";font-size:10px;opacity:0.6;}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:white;border:1px solid var(--light-gray);border-radius:10px;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.12);overflow:hidden;z-index:100;}
+    .dropdown-menu a{display:block;padding:11px 18px;font-size:13.5px;color:var(--dark);text-decoration:none;transition:background 0.15s;}
+    .dropdown-menu a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown:hover .dropdown-menu{display:block;}
+    .nav-cta{background:var(--maroon)!important;color:white!important;border-radius:24px!important;padding:10px 22px!important;font-weight:600;}
+
+    .page-hero{padding-top:72px;position:relative;height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--maroon-dark) 0%,#3a1515 100%);}
+    .hero-content{position:relative;z-index:2;text-align:center;color:white;}
+    .hero-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;display:block;}
+    .hero-content h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;}
+    .hero-content p{margin-top:12px;font-size:1.05rem;opacity:0.82;max-width:540px;margin-left:auto;margin-right:auto;}
+    .chinese-decoration{font-size:80px;opacity:0.08;position:absolute;top:20px;left:10%;font-family:serif;}
+
+    .section{padding:80px 48px;}
+    .section-alt{background:var(--off-white);}
+    .section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:14px;display:block;}
+    .section-header{text-align:center;margin-bottom:56px;}
+    .section-header h2{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;}
+    .section-header p{margin-top:12px;font-size:1rem;color:var(--gray);max-width:580px;margin-left:auto;margin-right:auto;}
+
+    .tip-box{background:linear-gradient(135deg,var(--maroon),var(--maroon-dark));border-radius:20px;padding:40px;color:white;max-width:900px;margin:0 auto 40px;display:flex;gap:20px;align-items:flex-start;}
+    .tip-icon{font-size:28px;flex-shrink:0;}
+    .tip-box h3{font-size:1.1rem;font-weight:700;margin-bottom:8px;}
+    .tip-box p{font-size:0.92rem;opacity:0.85;line-height:1.65;}
+
+    .visa-grid{max-width:900px;margin:0 auto;display:grid;gap:28px;}
+
+    .visa-card{background:white;border:1px solid var(--light-gray);border-radius:20px;padding:36px;transition:box-shadow 0.3s,transform 0.3s;}
+    .visa-card:hover{box-shadow:0 8px 32px rgba(107,45,45,0.1);transform:translateY(-2px);}
+    .visa-card-header{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+    .visa-card-icon{width:52px;height:52px;background:var(--maroon);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .visa-card-header h3{font-size:1.25rem;font-weight:800;}
+    .visa-card p{font-size:0.94rem;color:var(--gray);line-height:1.75;margin-bottom:12px;}
+    .visa-card ul{list-style:none;padding:0;}
+    .visa-card ul li{padding:8px 0;font-size:0.92rem;color:var(--gray);line-height:1.65;border-bottom:1px solid var(--light-gray);display:flex;gap:10px;align-items:flex-start;}
+    .visa-card ul li:last-child{border-bottom:none;}
+    .visa-card ul li::before{content:"\2713";color:var(--maroon);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+    .visa-type-badge{display:inline-block;background:var(--off-white);color:var(--maroon);font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;padding:5px 14px;border-radius:20px;margin-bottom:16px;}
+
+    .highlight-box{background:var(--off-white);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;padding:24px 28px;margin:16px 0;font-size:0.92rem;color:var(--dark);line-height:1.7;}
+
+    .steps-list{counter-reset:step;list-style:none;padding:0;}
+    .steps-list li{counter-increment:step;padding:14px 0;font-size:0.94rem;color:var(--gray);line-height:1.65;border-bottom:1px solid var(--light-gray);display:flex;gap:14px;align-items:flex-start;}
+    .steps-list li:last-child{border-bottom:none;}
+    .steps-list li::before{content:counter(step);background:var(--maroon);color:white;font-family:'Syne',sans-serif;font-weight:700;font-size:13px;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+
+    .cta-section{text-align:center;padding:80px 48px;background:linear-gradient(135deg,var(--maroon-dark),#3a1515);}
+    .cta-section h2{color:white;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:14px;}
+    .cta-section p{color:rgba(255,255,255,0.75);font-size:1rem;max-width:500px;margin:0 auto 28px;}
+    .btn-white{display:inline-block;background:white;color:var(--maroon);padding:14px 36px;border-radius:30px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;}
+    .btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.2);}
+
+    footer{background:#1a0f0f;padding:56px 48px 32px;color:rgba(255,255,255,0.6);}
+    .footer-inner{max-width:1100px;margin:0 auto;}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);gap:48px;flex-wrap:wrap;}
+    .footer-brand p{font-size:0.88rem;margin-top:10px;max-width:260px;line-height:1.65;}
+    .footer-links h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;margin-bottom:16px;}
+    .footer-links ul{list-style:none;}
+    .footer-links ul li{margin-bottom:10px;}
+    .footer-links ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.88rem;}
+    .footer-links ul li a:hover{color:var(--gold-light);}
+    .social-links{display:flex;gap:12px;margin-top:20px;}
+    .social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);text-decoration:none;transition:background 0.2s;}
+    .social-link:hover{background:var(--maroon);}
+    .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;}
+
+    @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.section{padding:56px 24px;}.visa-card{padding:28px 24px;}.cta-section{padding:56px 24px;}.footer-top{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo.JPG" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span class="nav-logo-text">China Travel Buddy</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown"><a href="#">Services</a><div class="dropdown-menu"><a href="china-ready.html">China Ready — £19.90</a><a href="tailored-trip.html">Tailored Trip — £99</a><a href="signature-vip.html">Signature / VIP — £199</a><a href="compare.html">Compare Packages</a></div></li>
+    <li class="nav-dropdown"><a href="#" class="active">Guides</a><div class="dropdown-menu"><a href="destinations.html">Destinations</a><a href="daily-phrases.html">Daily Phrases</a><a href="food.html">Food</a><a href="visa-tips.html" style="color:var(--maroon);font-weight:600;">Visa Tips</a></div></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="chinese-decoration">签证</div>
+  <div class="hero-content">
+    <span class="hero-label">Travel Guides</span>
+    <h1>China Visa Tips</h1>
+    <p>Everything you need to know about getting your visa sorted before travelling to China.</p>
+  </div>
+</section>
+
+<section class="section">
+
+  <div class="tip-box">
+    <div class="tip-icon">💡</div>
+    <div><h3>Important: Always Check the Latest Policy</h3><p>China's visa policies can change frequently. The information below is a general guide — always verify with the nearest Chinese embassy or consulate, or check the official website for the most up-to-date requirements before you apply.</p></div>
+  </div>
+
+  <div class="visa-grid">
+
+    <!-- Visa Types -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">📋</div>
+        <h3>Common Visa Types for Tourists</h3>
+      </div>
+      <p>Most travellers to China need an L (Tourist) visa. Here are the main types relevant to visitors:</p>
+      <ul>
+        <li><strong>L Visa (Tourist)</strong> — For sightseeing, visiting family or friends. Single, double, or multiple entry options available.</li>
+        <li><strong>M Visa (Business)</strong> — For commercial and trade activities. Required if you're attending trade fairs or business meetings.</li>
+        <li><strong>S Visa (Private / Family Visit)</strong> — For visiting family members who are working or studying in China.</li>
+        <li><strong>Transit Visa-Free</strong> — Many nationalities can transit through China visa-free for 72, 144, or 240 hours depending on the port of entry.</li>
+      </ul>
+    </div>
+
+    <!-- Transit Visa-Free -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">✈️</div>
+        <h3>Transit Visa-Free Policy (TWOV)</h3>
+      </div>
+      <p>China offers generous transit visa-free stays for many nationalities. This is perfect for short trips or stopovers.</p>
+      <div class="highlight-box">
+        <strong>240-Hour (10-Day) Visa-Free Transit:</strong> Available at major cities including Beijing, Shanghai, Guangzhou, Chengdu, and more. You must have a confirmed onward ticket to a third country/region (different from where you arrived from).
+      </div>
+      <ul>
+        <li>Available to passport holders from 54+ countries including the UK, US, Canada, Australia, and most EU nations</li>
+        <li>You must enter and exit through designated ports in the same administrative region (or approved cross-region routes)</li>
+        <li>You cannot work or study during your transit stay</li>
+        <li>Always carry your onward flight ticket confirmation</li>
+      </ul>
+    </div>
+
+    <!-- Application Process -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">📝</div>
+        <h3>How to Apply for a China Visa</h3>
+      </div>
+      <p>The application process is straightforward if you have the right documents ready.</p>
+      <ol class="steps-list">
+        <li>Complete the online visa application form at the Chinese Visa Application Service Centre (CVASC) website for your country</li>
+        <li>Gather your supporting documents: valid passport (6+ months validity, blank pages), passport photo, flight booking, hotel reservations, and travel itinerary</li>
+        <li>Book an appointment at your nearest Chinese Visa Application Centre or embassy</li>
+        <li>Attend your appointment in person — submit your documents and pay the visa fee</li>
+        <li>Collect your passport with the visa (usually within 4-7 working days, or pay extra for express processing)</li>
+      </ol>
+    </div>
+
+    <!-- Required Documents -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">📂</div>
+        <h3>Documents You'll Need</h3>
+      </div>
+      <p>Make sure you have these ready before your appointment to avoid delays:</p>
+      <ul>
+        <li><strong>Valid passport</strong> — Must have at least 6 months validity remaining and at least 2 blank visa pages</li>
+        <li><strong>Completed application form</strong> — Filled out online, printed and signed</li>
+        <li><strong>Passport-sized photo</strong> — Recent, white background, 48mm x 33mm (specific requirements vary by country)</li>
+        <li><strong>Flight booking confirmation</strong> — Round-trip ticket or onward travel proof</li>
+        <li><strong>Hotel reservations</strong> — For each city you plan to visit; if staying with friends/family, an invitation letter is needed</li>
+        <li><strong>Travel itinerary</strong> — A day-by-day plan showing which cities you'll visit</li>
+        <li><strong>Proof of financial means</strong> — Bank statements or employment letter (sometimes required)</li>
+        <li><strong>Previous Chinese visas</strong> — If you've visited China before, bring old passports with previous visas</li>
+      </ul>
+    </div>
+
+    <!-- Costs & Processing -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">💰</div>
+        <h3>Costs & Processing Times</h3>
+      </div>
+      <p>Fees vary by nationality and visa type. Here are typical ranges:</p>
+      <ul>
+        <li><strong>UK citizens:</strong> £151 for single entry, £174 for double entry, £226 for multiple entry (6 months or 1 year)</li>
+        <li><strong>US citizens:</strong> ~$185 for a 10-year multiple entry visa</li>
+        <li><strong>Standard processing:</strong> 4-7 working days</li>
+        <li><strong>Express processing:</strong> 2-3 working days (additional fee applies)</li>
+        <li><strong>Rush processing:</strong> 1 working day (additional fee, subject to availability)</li>
+      </ul>
+      <div class="highlight-box">
+        <strong>Tip:</strong> Apply at least 4-6 weeks before your trip. During peak season (Chinese New Year, National Day Golden Week), processing can take longer.
+      </div>
+    </div>
+
+    <!-- Top Tips -->
+    <div class="visa-card">
+      <div class="visa-card-header">
+        <div class="visa-card-icon">🌟</div>
+        <h3>Top Tips for a Smooth Application</h3>
+      </div>
+      <ul>
+        <li><strong>Apply early</strong> — Don't leave it to the last minute. Start the process at least 1 month before departure.</li>
+        <li><strong>Be specific with your itinerary</strong> — Chinese visa offices want to see detailed plans. Include dates, cities, and accommodation for each day.</li>
+        <li><strong>Book refundable flights/hotels</strong> — You need bookings for the application, but plans might change. Use refundable options.</li>
+        <li><strong>Photo requirements are strict</strong> — White background, no glasses, specific dimensions. Many applications get rejected for incorrect photos.</li>
+        <li><strong>Invitation letters matter</strong> — If visiting friends or family, their invitation letter should include their ID details, your relationship, and their address in China.</li>
+        <li><strong>Keep copies of everything</strong> — Photocopy all documents and save digital copies on your phone or cloud storage.</li>
+        <li><strong>Register at local police station</strong> — Within 24 hours of arrival, you must register at the local police station (hotels do this automatically).</li>
+        <li><strong>Check if you qualify for visa-free entry</strong> — Some nationalities may enter without a visa for short stays. Always check the latest policies.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <h2>Need Help with Your Visa?</h2>
+  <p>Our China-Ready package includes step-by-step visa guidance tailored to your nationality and travel plans.</p>
+  <a href="contact.html" class="btn-white">Get Your Plan</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img src="logo.JPG" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:white;">China Travel Buddy</span></div><p>Helping international travellers explore China with confidence.</p><div class="social-links"><a href="https://tiktok.com/@thechinatravelbuddy" class="social-link">𝕋</a><a href="https://instagram.com/thchinatravelbuddy" class="social-link">📷</a><a href="https://facebook.com/share/1DrjCf1k2H" class="social-link">f</a><a href="https://wa.me/message/U5L3CQI4L3LIL1" class="social-link">W</a><a href="https://linkedin.com/in/carol-lin-a28163389" class="social-link">in</a></div></div>
+      <div class="footer-links"><h4>Services</h4><ul><li><a href="china-ready.html">China Ready</a></li><li><a href="tailored-trip.html">Tailored Trip</a></li><li><a href="signature-vip.html">Signature / VIP</a></li></ul></div>
+      <div class="footer-links"><h4>Guides</h4><ul><li><a href="destinations.html">Destinations</a></li><li><a href="daily-phrases.html">Daily Phrases</a></li><li><a href="food.html">Food</a></li><li><a href="visa-tips.html">Visa Tips</a></li></ul></div>
+      <div class="footer-links"><h4>Contact</h4><ul><li><a href="mailto:info@thechinatravelbuddy.com">info@thechinatravelbuddy.com</a></li><li><a href="tel:+8613857756190">+86 138 5775 6190</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>&copy; 2025 China Travel Buddy. All rights reserved.</span></div>
+  </div>
+</footer>
+<script>
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+</script>
+</body>
+</html>
