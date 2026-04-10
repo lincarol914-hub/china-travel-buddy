@@ -358,7 +358,7 @@
 
     .service-card {
       border-radius: 20px;
-      overflow: hidden;
+      overflow: visible;
       background: white;
       border: 1px solid var(--light-gray);
       transition: transform 0.3s, box-shadow 0.3s;
@@ -373,6 +373,7 @@
     .service-card-img {
       height: 200px;
       background: var(--maroon);
+      border-radius: 20px 20px 0 0;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -468,20 +469,21 @@
     }
     .featured-badge {
       position: absolute;
-      top: -12px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--gold);
       color: white;
       font-family: 'Syne', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      padding: 4px 16px;
-      border-radius: 12px;
+      padding: 6px 20px;
+      border-radius: 20px;
       white-space: nowrap;
-      z-index: 1;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(201,168,76,0.4);
     }
 
     /* ── HOW IT WORKS ── */
@@ -878,7 +880,7 @@
 <!-- NAV -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+    <img src="logo.JPG" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
     <span class="nav-logo-text">China Travel Buddy</span>
   </a>
   <ul class="nav-links">
@@ -967,7 +969,7 @@
     <div class="service-card featured">
       <div class="featured-badge">Best Value</div>
       <div class="service-card-img">
-        <img src="https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=600&q=80" alt="Tailored Trip">
+        <img src="https://images.unsplash.com/photo-1537531828590-72c3d04cdbe4?w=600&q=80" alt="Tailored Trip">
         <div class="service-price-badge">£99</div>
       </div>
       <div class="service-card-body">
@@ -1236,7 +1238,7 @@
     <div class="footer-top">
       <div class="footer-brand">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-          <img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+          <img src="logo.JPG" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
           <span class="nav-logo-text">China Travel Buddy</span>
         </div>
         <p>Helping international travellers explore China with confidence — from pre-trip setup to on-the-ground support.</p>
@@ -1269,7 +1271,7 @@
       <div class="footer-links">
         <h4>Contact</h4>
         <ul>
-          <li><a href="/cdn-cgi/l/email-protection#0d64636b624d7965686e6564636c797f6c7b68616f78696974236e6260"><span class="__cf_email__" data-cfemail="c1a8afa7ae81b5a9a4a2a9a8afa0b5b3a0b7a4ada3b4a5a5b8efa2aeac">[email&#160;protected]</span></a></li>
+          <li><a href="mailto:info@thechinatravelbuddy.com">info@thechinatravelbuddy.com</a></li>
           <li><a href="tel:+8613857756190">+86 138 5775 6190</a></li>
           <li><a href="contact.html">Contact Us</a></li>
         </ul>
