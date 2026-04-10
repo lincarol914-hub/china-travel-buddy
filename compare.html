@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compare Packages | China Travel Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Questrial&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--maroon:#6B2D2D;--maroon-dark:#4e1f1f;--gold:#c9a84c;--gold-light:#e8d5a3;--white:#fff;--off-white:#f8f4f0;--dark:#1a1a1a;--gray:#555;--light-gray:#e8e0d8;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Questrial',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,45,45,0.1);}
+    nav.scrolled{box-shadow:0 4px 24px rgba(107,45,45,0.12);}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{width:40px;height:40px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:'Syne',sans-serif;font-weight:800;font-size:14px;}
+    .nav-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--dark);}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--dark);font-size:14px;padding:8px 14px;border-radius:6px;transition:background 0.2s,color 0.2s;}
+    .nav-links a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a::after{content:" ▾";font-size:10px;opacity:0.6;}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:white;border:1px solid var(--light-gray);border-radius:10px;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.12);overflow:hidden;z-index:100;}
+    .dropdown-menu a{display:block;padding:11px 18px;font-size:13.5px;color:var(--dark);text-decoration:none;transition:background 0.15s;}
+    .dropdown-menu a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown:hover .dropdown-menu{display:block;}
+    .nav-cta{background:var(--maroon)!important;color:white!important;border-radius:24px!important;padding:10px 22px!important;font-weight:600;}
+
+    .page-header{padding:140px 48px 80px;text-align:center;background:var(--off-white);}
+    .section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:14px;}
+    .page-header h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;margin-bottom:16px;}
+    .page-header p{font-size:1.05rem;color:var(--gray);max-width:520px;margin:0 auto;line-height:1.7;}
+
+    .pricing-section{padding:80px 48px;background:white;}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1080px;margin:0 auto;}
+    .pricing-card{border-radius:24px;border:2px solid var(--light-gray);overflow:hidden;display:flex;flex-direction:column;transition:transform 0.3s,box-shadow 0.3s;}
+    .pricing-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(107,45,45,0.1);}
+    .pricing-card.featured{border-color:var(--maroon);position:relative;}
+    .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:white;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:5px 18px;border-radius:12px;white-space:nowrap;}
+    .card-header{padding:36px 32px 28px;background:var(--off-white);text-align:center;}
+    .featured .card-header{background:var(--maroon);}
+    .card-tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:8px;}
+    .featured .card-tag{color:var(--gold-light);}
+    .card-title{font-size:1.5rem;font-weight:800;color:var(--dark);margin-bottom:16px;}
+    .featured .card-title{color:white;}
+    .card-price{font-size:3rem;font-weight:800;font-family:'Syne',sans-serif;color:var(--maroon);}
+    .featured .card-price{color:white;}
+    .card-price span{font-size:1rem;font-weight:400;opacity:0.6;}
+    .card-desc{font-size:0.88rem;color:var(--gray);margin-top:10px;line-height:1.6;}
+    .featured .card-desc{color:rgba(255,255,255,0.75);}
+    .card-body{padding:28px 32px;flex:1;display:flex;flex-direction:column;}
+    .feature-list{list-style:none;flex:1;}
+    .feature-list li{font-size:0.9rem;color:var(--gray);padding:9px 0;border-bottom:1px solid var(--light-gray);display:flex;align-items:flex-start;gap:10px;}
+    .feature-list li:last-child{border-bottom:none;}
+    .check{color:var(--maroon);font-weight:700;flex-shrink:0;}
+    .cross{color:#ccc;flex-shrink:0;}
+    .btn-card{display:block;text-align:center;margin-top:28px;padding:13px;background:var(--maroon);color:white;border-radius:28px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;transition:background 0.2s,transform 0.15s;}
+    .btn-card:hover{background:var(--maroon-dark);transform:translateY(-1px);}
+    .btn-card.outline{background:transparent;color:var(--maroon);border:2px solid var(--maroon);}
+    .btn-card.outline:hover{background:var(--off-white);}
+
+    .compare-table-section{padding:80px 48px;background:var(--off-white);}
+    .compare-table-section h2{text-align:center;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;margin-bottom:48px;}
+    .table-wrap{max-width:900px;margin:0 auto;overflow-x:auto;}
+    table{width:100%;border-collapse:collapse;background:white;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.06);}
+    thead{background:var(--maroon);}
+    thead th{padding:16px 20px;color:white;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;text-align:center;}
+    thead th:first-child{text-align:left;}
+    tbody tr{border-bottom:1px solid var(--light-gray);}
+    tbody tr:last-child{border-bottom:none;}
+    tbody tr:nth-child(even){background:var(--off-white);}
+    tbody td{padding:14px 20px;font-size:0.9rem;color:var(--gray);text-align:center;}
+    tbody td:first-child{text-align:left;color:var(--dark);font-weight:500;}
+    .tick{color:var(--maroon);font-size:16px;}
+    .dash{color:#ccc;}
+
+    footer{background:#1a0f0f;padding:56px 48px 32px;color:rgba(255,255,255,0.6);}
+    .footer-inner{max-width:1100px;margin:0 auto;}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);gap:48px;flex-wrap:wrap;}
+    .footer-brand p{font-size:0.88rem;margin-top:10px;max-width:260px;line-height:1.65;}
+    .footer-links h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;margin-bottom:16px;}
+    .footer-links ul{list-style:none;}
+    .footer-links ul li{margin-bottom:10px;}
+    .footer-links ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.88rem;transition:color 0.2s;}
+    .footer-links ul li a:hover{color:var(--gold-light);}
+    .social-links{display:flex;gap:12px;margin-top:20px;}
+    .social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);text-decoration:none;transition:background 0.2s;}
+    .social-link:hover{background:var(--maroon);}
+    .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;}
+    
+    
+    @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.pricing-section,.compare-table-section{padding:56px 24px;}.pricing-grid{grid-template-columns:1fr;}.footer-top{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span class="nav-logo-text">China Travel Buddy</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown"><a href="#" class="active">Services</a><div class="dropdown-menu"><a href="china-ready.html">China Ready — £19.90</a><a href="tailored-trip.html">Tailored Trip — £99</a><a href="signature-vip.html">Signature / VIP — £199</a><a href="compare.html" style="color:var(--maroon);font-weight:600;">Compare Packages</a></div></li>
+    <li class="nav-dropdown"><a href="#">Guides</a><div class="dropdown-menu"><a href="destinations.html">Destinations</a><a href="daily-phrases.html">Daily Phrases</a><a href="food.html">Food</a></div></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="section-label">Our Packages</div>
+  <h1>Choose Your Plan</h1>
+  <p>Three levels of support — from essential preparation to full VIP coordination. Find the right fit for your trip.</p>
+</div>
+
+<section class="pricing-section">
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="card-header">
+        <div class="card-tag">Preparation</div>
+        <div class="card-title">China Ready</div>
+        <div class="card-price">£19.90<span> /trip</span></div>
+        <p class="card-desc">Get ready for China before you fly — apps, payments, and pre-trip Q&A.</p>
+      </div>
+      <div class="card-body">
+        <ul class="feature-list">
+          <li><span class="check">✓</span> Pre-trip preparation checklist</li>
+          <li><span class="check">✓</span> Payment & apps setup (Alipay, WeChat, DiDi)</li>
+          <li><span class="check">✓</span> Entry guidance & travel resources</li>
+          <li><span class="check">✓</span> Pre-departure Q&A</li>
+          <li><span class="cross">—</span> Personalised itinerary</li>
+          <li><span class="cross">—</span> Booking links & recommendations</li>
+          <li><span class="cross">—</span> Online support during travel</li>
+          <li><span class="cross">—</span> Hotel & experience coordination</li>
+          <li><span class="cross">—</span> Private guide or driver</li>
+          <li><span class="cross">—</span> Priority support</li>
+        </ul>
+        <a href="china-ready.html" class="btn-card outline">Get Started</a>
+      </div>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="badge">Best Value</div>
+      <div class="card-header">
+        <div class="card-tag">Planning + Support</div>
+        <div class="card-title">Tailored Trip</div>
+        <div class="card-price">£99<span> /trip</span></div>
+        <p class="card-desc">A personalised itinerary and online support — built around your travel style.</p>
+      </div>
+      <div class="card-body">
+        <ul class="feature-list">
+          <li><span class="check">✓</span> Pre-trip preparation checklist</li>
+          <li><span class="check">✓</span> Payment & apps setup</li>
+          <li><span class="check">✓</span> Entry guidance & travel resources</li>
+          <li><span class="check">✓</span> Pre-departure Q&A</li>
+          <li><span class="check">✓</span> Personalised itinerary</li>
+          <li><span class="check">✓</span> Booking links & recommendations</li>
+          <li><span class="check">✓</span> Online support during travel</li>
+          <li><span class="cross">—</span> Hotel & experience coordination</li>
+          <li><span class="cross">—</span> Private guide or driver</li>
+          <li><span class="cross">—</span> Priority support</li>
+        </ul>
+        <a href="tailored-trip.html" class="btn-card">Get Started</a>
+      </div>
+    </div>
+
+    <div class="pricing-card">
+      <div class="card-header">
+        <div class="card-tag">Premium VIP</div>
+        <div class="card-title">Signature / VIP</div>
+        <div class="card-price">£199<span> /trip</span></div>
+        <p class="card-desc">Full coordination — private guide, hotel booking, airport transfers, and priority support.</p>
+      </div>
+      <div class="card-body">
+        <ul class="feature-list">
+          <li><span class="check">✓</span> Pre-trip preparation checklist</li>
+          <li><span class="check">✓</span> Payment & apps setup</li>
+          <li><span class="check">✓</span> Entry guidance & travel resources</li>
+          <li><span class="check">✓</span> Pre-departure Q&A</li>
+          <li><span class="check">✓</span> Personalised itinerary</li>
+          <li><span class="check">✓</span> Booking links & recommendations</li>
+          <li><span class="check">✓</span> Online support during travel</li>
+          <li><span class="check">✓</span> Hotel & experience coordination</li>
+          <li><span class="check">✓</span> Private guide or driver</li>
+          <li><span class="check">✓</span> Priority support</li>
+        </ul>
+        <a href="signature-vip.html" class="btn-card">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare-table-section">
+  <h2>Full Feature Comparison</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>China Ready<br><span style="font-weight:400;opacity:0.8;">£19.90</span></th>
+          <th>Tailored Trip<br><span style="font-weight:400;opacity:0.8;">£99</span></th>
+          <th>Signature/VIP<br><span style="font-weight:400;opacity:0.8;">£199</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Pre-trip preparation checklist</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Payment & apps setup</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Entry guidance</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Pre-departure Q&A</td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Personalised itinerary</td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Booking links & recommendations</td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Trip revisions</td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Online support during travel</td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Hotel & experience coordination</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Airport transfer arrangement</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Private guide or driver</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>On-the-ground coordination</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td></tr>
+        <tr><td>Priority support</td><td><span class="dash">—</span></td><td><span class="dash">—</span></td><td><span class="tick">✓</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:white;">China Travel Buddy</span></div><p>Helping international travellers explore China with confidence.</p><div class="social-links"><a href="https://tiktok.com/@thechinatravelbuddy" class="social-link">𝕋</a><a href="https://instagram.com/thchinatravelbuddy" class="social-link">📷</a><a href="https://facebook.com/share/1DrjCf1k2H" class="social-link">f</a><a href="https://wa.me/message/U5L3CQI4L3LIL1" class="social-link">W</a><a href="https://linkedin.com/in/carol-lin-a28163389" class="social-link">in</a></div></div>
+      <div class="footer-links"><h4>Services</h4><ul><li><a href="china-ready.html">China Ready — £19.90</a></li><li><a href="tailored-trip.html">Tailored Trip — £99</a></li><li><a href="signature-vip.html">Signature / VIP — £199</a></li><li><a href="compare.html">Compare Packages</a></li></ul></div>
+      <div class="footer-links"><h4>Guides</h4><ul><li><a href="destinations.html">Destinations</a></li><li><a href="daily-phrases.html">Daily Phrases</a></li><li><a href="food.html">Food</a></li></ul></div>
+      <div class="footer-links"><h4>Contact</h4><ul><li><a href="/cdn-cgi/l/email-protection#f49d9a929bb4809c91979c9d9a95808695829198968190908dda979b99"><span class="__cf_email__" data-cfemail="a3cacdc5cce3d7cbc6c0cbcacdc2d7d1c2d5c6cfc1d6c7c7da8dc0ccce">[email&#160;protected]</span></a></li><li><a href="tel:+8613857756190">+86 138 5775 6190</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 China Travel Buddy. All rights reserved.</span></div>
+  </div>
+</footer>
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    var s = document.getElementById('form-success');
+    if (s) s.style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

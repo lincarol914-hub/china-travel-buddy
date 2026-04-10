@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | China Travel Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Questrial&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--maroon:#6B2D2D;--maroon-dark:#4e1f1f;--gold:#c9a84c;--gold-light:#e8d5a3;--white:#fff;--off-white:#f8f4f0;--dark:#1a1a1a;--gray:#555;--light-gray:#e8e0d8;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Questrial',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,45,45,0.1);}
+    nav.scrolled{box-shadow:0 4px 24px rgba(107,45,45,0.12);}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{width:40px;height:40px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:'Syne',sans-serif;font-weight:800;font-size:14px;}
+    .nav-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--dark);}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--dark);font-size:14px;padding:8px 14px;border-radius:6px;transition:background 0.2s,color 0.2s;}
+    .nav-links a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a::after{content:" ▾";font-size:10px;opacity:0.6;}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:white;border:1px solid var(--light-gray);border-radius:10px;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.12);overflow:hidden;z-index:100;}
+    .dropdown-menu a{display:block;padding:11px 18px;font-size:13.5px;color:var(--dark);text-decoration:none;transition:background 0.15s;}
+    .dropdown-menu a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown:hover .dropdown-menu{display:block;}
+    .nav-cta{background:var(--maroon)!important;color:white!important;border-radius:24px!important;padding:10px 22px!important;font-weight:600;}
+
+    .page-hero{padding-top:72px;position:relative;height:360px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,5,5,0.55),rgba(50,15,15,0.5)),url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?w=1600&q=80') center/cover no-repeat;}
+    .hero-content{position:relative;z-index:2;text-align:center;color:white;}
+    .hero-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;display:block;}
+    .hero-content h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;}
+    .hero-content p{margin-top:12px;font-size:1.05rem;opacity:0.82;}
+
+    .contact-section{padding:88px 48px;background:var(--off-white);}
+    .contact-inner{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1fr 1.6fr;gap:64px;align-items:start;}
+    .contact-info h2{font-size:1.9rem;font-weight:800;margin-bottom:16px;line-height:1.25;}
+    .contact-info>p{font-size:0.95rem;color:var(--gray);line-height:1.75;margin-bottom:36px;}
+    .contact-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px;}
+    .contact-icon{width:48px;height:48px;background:var(--maroon);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+    .contact-item h4{font-size:0.9rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+    .contact-item a,.contact-item p{font-size:0.9rem;color:var(--gray);text-decoration:none;line-height:1.5;}
+    .contact-item a:hover{color:var(--maroon);}
+    .social-section{margin-top:36px;}
+    .social-section h4{font-size:0.88rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:14px;}
+    .social-links{display:flex;gap:10px;}
+    .social-link{width:40px;height:40px;border-radius:50%;background:var(--maroon);display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;font-size:14px;transition:background 0.2s,transform 0.15s;}
+    .social-link:hover{background:var(--maroon-dark);transform:translateY(-2px);}
+    .how-steps{margin-top:40px;}
+    .how-steps h4{font-size:0.88rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:20px;}
+    .step-row{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start;}
+    .step-num{width:32px;height:32px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-family:'Syne',sans-serif;font-weight:800;font-size:13px;flex-shrink:0;}
+    .step-text h5{font-size:0.9rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+    .step-text p{font-size:0.84rem;color:var(--gray);line-height:1.5;}
+
+    .form-card{background:white;border-radius:24px;padding:48px;border:1px solid var(--light-gray);box-shadow:0 8px 32px rgba(107,45,45,0.06);}
+    .form-card h3{font-size:1.4rem;font-weight:800;margin-bottom:6px;}
+    .form-card>p{font-size:0.9rem;color:var(--gray);margin-bottom:32px;}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+    .form-group{display:flex;flex-direction:column;gap:6px;}
+    .form-group label{font-size:12px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--gray);}
+    .form-group input,.form-group select,.form-group textarea{padding:13px 16px;border:1.5px solid var(--light-gray);border-radius:10px;font-family:'Questrial',sans-serif;font-size:0.95rem;color:var(--dark);background:var(--off-white);outline:none;transition:border-color 0.2s,box-shadow 0.2s;}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--maroon);box-shadow:0 0 0 3px rgba(107,45,45,0.08);}
+    .form-group textarea{resize:vertical;min-height:110px;}
+    .form-full{grid-column:1/-1;}
+    .checkbox-group{display:flex;flex-direction:column;gap:10px;}
+    .checkbox-label{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:var(--dark);cursor:pointer;}
+    .checkbox-label input[type=checkbox]{width:18px;height:18px;accent-color:var(--maroon);cursor:pointer;}
+    .btn-submit{width:100%;padding:15px;background:var(--maroon);color:white;border:none;border-radius:32px;font-family:'Syne',sans-serif;font-weight:700;font-size:15px;cursor:pointer;margin-top:8px;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 18px rgba(107,45,45,0.3);}
+    .btn-submit:hover{background:var(--maroon-dark);transform:translateY(-1px);}
+    .form-divider{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--gray);font-weight:600;margin:20px 0 16px;border-top:1px solid var(--light-gray);padding-top:20px;}
+
+    footer{background:#1a0f0f;padding:56px 48px 32px;color:rgba(255,255,255,0.6);}
+    .footer-inner{max-width:1100px;margin:0 auto;}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);gap:48px;flex-wrap:wrap;}
+    .footer-brand p{font-size:0.88rem;margin-top:10px;max-width:260px;line-height:1.65;}
+    .footer-links h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;margin-bottom:16px;}
+    .footer-links ul{list-style:none;}
+    .footer-links ul li{margin-bottom:10px;}
+    .footer-links ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.88rem;}
+    .footer-links ul li a:hover{color:var(--gold-light);}
+    .footer-social .social-link{background:rgba(255,255,255,0.08);}
+    .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;}
+    
+    
+    @media(max-width:900px){.contact-inner{grid-template-columns:1fr;}.form-row{grid-template-columns:1fr;}}
+    @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.contact-section{padding:56px 24px;}.form-card{padding:28px;}.footer-top{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span class="nav-logo-text">China Travel Buddy</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown"><a href="#">Services</a><div class="dropdown-menu"><a href="china-ready.html">China Ready — £19.90</a><a href="tailored-trip.html">Tailored Trip — £99</a><a href="signature-vip.html">Signature / VIP — £199</a><a href="compare.html">Compare Packages</a></div></li>
+    <li class="nav-dropdown"><a href="#">Guides</a><div class="dropdown-menu"><a href="destinations.html">Destinations</a><a href="daily-phrases.html">Daily Phrases</a><a href="food.html">Food</a></div></li>
+    <li><a href="contact.html" class="active">Contact Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-label">Get In Touch</span>
+    <h1>Start Planning<br>Your Trip</h1>
+    <p>We'll reply within 24 hours with personalised recommendations.</p>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="contact-inner">
+    <div>
+      <h2>Let's Talk About Your China Trip</h2>
+      <p>Tell us your travel ideas and we'll recommend the right service for you — no commitment required.</p>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><h4>Email</h4><a href="/cdn-cgi/l/email-protection#5e373038311e2a363b3d3637303f2a2c3f283b323c2b3a3a27703d3133"><span class="__cf_email__" data-cfemail="f49d9a929bb4809c91979c9d9a95808695829198968190908dda979b99">[email&#160;protected]</span></a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><h4>Phone / WhatsApp</h4><a href="tel:+8613857756190">+86 138 5775 6190</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">⏱️</div>
+        <div><h4>Response Time</h4><p>We reply to all enquiries within 24 hours.</p></div>
+      </div>
+      <div class="social-section">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="https://tiktok.com/@thechinatravelbuddy" class="social-link">𝕋</a>
+          <a href="https://instagram.com/thchinatravelbuddy" class="social-link">📷</a>
+          <a href="https://facebook.com/share/1DrjCf1k2H" class="social-link">f</a>
+          <a href="https://wa.me/message/U5L3CQI4L3LIL1" class="social-link">W</a>
+          <a href="https://linkedin.com/in/carol-lin-a28163389" class="social-link">in</a>
+        </div>
+      </div>
+      <div class="how-steps">
+        <h4>How It Works</h4>
+        <div class="step-row"><div class="step-num">1</div><div class="step-text"><h5>Fill in the form</h5><p>Tell us about your trip plans, dates, and what kind of support you're looking for.</p></div></div>
+        <div class="step-row"><div class="step-num">2</div><div class="step-text"><h5>We recommend your service</h5><p>We'll suggest the best package for your travel style and needs.</p></div></div>
+        <div class="step-row"><div class="step-num">3</div><div class="step-text"><h5>We get to work</h5><p>Once confirmed, we start preparing your travel support immediately.</p></div></div>
+        <div class="step-row"><div class="step-num">4</div><div class="step-text"><h5>Travel with confidence</h5><p>Hit the ground running with everything prepared before you fly.</p></div></div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <h3>Tell Us About Your Trip</h3>
+      <p>The more detail you share, the better we can help you plan.</p>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group"><label>First Name *</label><input type="text" required placeholder="Your first name"></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Your last name"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full"><label>Email *</label><input type="email" required placeholder="your@email.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full"><label>Country</label><input type="text" placeholder="Where are you travelling from?"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full"><label>When are you planning to travel?</label><input type="text" placeholder="e.g. March 2025, 2 weeks"></div>
+        </div>
+        <div class="form-divider">What type of support are you interested in?</div>
+        <div class="form-row">
+          <div class="form-group form-full">
+            <div class="checkbox-group">
+              <label class="checkbox-label"><input type="checkbox"> Pre-Trip Support (China Ready)</label>
+              <label class="checkbox-label"><input type="checkbox"> Personalised Trip Planning (Tailored Trip)</label>
+              <label class="checkbox-label"><input type="checkbox"> On-Trip Support</label>
+              <label class="checkbox-label"><input type="checkbox"> Luxury / VIP Experience</label>
+              <label class="checkbox-label"><input type="checkbox"> Not sure yet</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-divider">What experiences interest you?</div>
+        <div class="form-row">
+          <div class="form-group form-full">
+            <div class="checkbox-group" style="flex-direction:row;flex-wrap:wrap;gap:10px;">
+              <label class="checkbox-label"><input type="checkbox"> 🍜 Food</label>
+              <label class="checkbox-label"><input type="checkbox"> 🏯 Culture</label>
+              <label class="checkbox-label"><input type="checkbox"> 🌿 Nature</label>
+              <label class="checkbox-label"><input type="checkbox"> 📜 History</label>
+              <label class="checkbox-label"><input type="checkbox"> 📸 Photography</label>
+              <label class="checkbox-label"><input type="checkbox"> 🛍️ Shopping</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full"><label>Where do you want to visit?</label><input type="text" placeholder="e.g. Beijing, Shanghai, Chengdu..."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group form-full"><label>Anything else you'd like us to know?</label><textarea placeholder="Tell us more — group size, special requirements, budget range..."></textarea></div>
+        </div>
+        <button type="submit" class="btn-submit">Send My Enquiry</button>
+        <p id="form-success" style="display:none;text-align:center;margin-top:16px;color:var(--maroon);font-weight:600;">Thanks for submitting! We'll reply within 24 hours ✓</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:white;">China Travel Buddy</span></div><p>Helping international travellers explore China with confidence.</p><div class="social-links footer-social"><a href="https://tiktok.com/@thechinatravelbuddy" class="social-link">𝕋</a><a href="https://instagram.com/thchinatravelbuddy" class="social-link">📷</a><a href="https://facebook.com/share/1DrjCf1k2H" class="social-link">f</a><a href="https://wa.me/message/U5L3CQI4L3LIL1" class="social-link">W</a><a href="https://linkedin.com/in/carol-lin-a28163389" class="social-link">in</a></div></div>
+      <div class="footer-links"><h4>Services</h4><ul><li><a href="china-ready.html">China Ready</a></li><li><a href="tailored-trip.html">Tailored Trip</a></li><li><a href="signature-vip.html">Signature / VIP</a></li><li><a href="compare.html">Compare Packages</a></li></ul></div>
+      <div class="footer-links"><h4>Guides</h4><ul><li><a href="destinations.html">Destinations</a></li><li><a href="daily-phrases.html">Daily Phrases</a></li><li><a href="food.html">Food</a></li></ul></div>
+      <div class="footer-links"><h4>Contact</h4><ul><li><a href="/cdn-cgi/l/email-protection#d1b8bfb7be91a5b9b4b2b9b8bfb0a5a3b0a7b4bdb3a4b5b5a8ffb2bebc"><span class="__cf_email__" data-cfemail="98f1f6fef7d8ecf0fdfbf0f1f6f9eceaf9eefdf4faedfcfce1b6fbf7f5">[email&#160;protected]</span></a></li><li><a href="tel:+8613857756190">+86 138 5775 6190</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 China Travel Buddy. All rights reserved.</span></div>
+  </div>
+</footer>
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    var s = document.getElementById('form-success');
+    if (s) s.style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>

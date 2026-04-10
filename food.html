@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Food Guide | China Travel Buddy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Questrial&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--maroon:#6B2D2D;--maroon-dark:#4e1f1f;--gold:#c9a84c;--gold-light:#e8d5a3;--white:#fff;--off-white:#f8f4f0;--dark:#1a1a1a;--gray:#555;--light-gray:#e8e0d8;}
+    *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+    body{font-family:'Questrial',sans-serif;color:var(--dark);background:var(--white);overflow-x:hidden;}
+    h1,h2,h3,h4{font-family:'Syne',sans-serif;}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(107,45,45,0.1);}
+    nav.scrolled{box-shadow:0 4px 24px rgba(107,45,45,0.12);}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+    .nav-logo-icon{width:40px;height:40px;background:var(--maroon);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold-light);font-family:'Syne',sans-serif;font-weight:800;font-size:14px;}
+    .nav-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--dark);}
+    .nav-links{display:flex;align-items:center;gap:8px;list-style:none;}
+    .nav-links a{text-decoration:none;color:var(--dark);font-size:14px;padding:8px 14px;border-radius:6px;transition:background 0.2s,color 0.2s;}
+    .nav-links a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown{position:relative;}
+    .nav-dropdown>a::after{content:" ▾";font-size:10px;opacity:0.6;}
+    .dropdown-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:white;border:1px solid var(--light-gray);border-radius:10px;min-width:200px;box-shadow:0 12px 40px rgba(0,0,0,0.12);overflow:hidden;z-index:100;}
+    .dropdown-menu a{display:block;padding:11px 18px;font-size:13.5px;color:var(--dark);text-decoration:none;transition:background 0.15s;}
+    .dropdown-menu a:hover{background:var(--off-white);color:var(--maroon);}
+    .nav-dropdown:hover .dropdown-menu{display:block;}
+    .nav-cta{background:var(--maroon)!important;color:white!important;border-radius:24px!important;padding:10px 22px!important;font-weight:600;}
+
+    .page-hero{padding-top:72px;position:relative;height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(30,8,8,0.7),rgba(60,15,15,0.6)),url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1600&q=80') center/cover no-repeat;}
+    .hero-content{position:relative;z-index:2;text-align:center;color:white;}
+    .hero-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:14px;display:block;}
+    .hero-content h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;}
+    .hero-content p{margin-top:12px;font-size:1rem;opacity:0.82;max-width:520px;margin-left:auto;margin-right:auto;}
+
+    .section{padding:80px 48px;}
+    .section-alt{background:var(--off-white);}
+    .section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:14px;display:block;}
+    .section-header{text-align:center;margin-bottom:64px;}
+    .section-header h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;}
+    .section-header p{font-size:1rem;color:var(--gray);max-width:520px;margin:14px auto 0;line-height:1.7;}
+
+    .food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1060px;margin:0 auto;}
+    .food-card{border-radius:20px;overflow:hidden;background:white;border:1px solid var(--light-gray);transition:transform 0.3s,box-shadow 0.3s;}
+    .food-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(107,45,45,0.12);}
+    .food-img{height:220px;overflow:hidden;position:relative;}
+    .food-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+    .food-card:hover .food-img img{transform:scale(1.06);}
+    .food-category-badge{position:absolute;top:14px;left:14px;background:var(--maroon);color:white;font-family:'Syne',sans-serif;font-size:11px;font-weight:700;padding:5px 12px;border-radius:12px;}
+    .food-body{padding:24px;}
+    .food-city{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--maroon);font-weight:600;margin-bottom:8px;}
+    .food-body h3{font-size:1.2rem;font-weight:800;margin-bottom:10px;}
+    .food-body p{font-size:0.9rem;color:var(--gray);line-height:1.7;}
+    .food-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+    .food-tag{background:var(--off-white);color:var(--gray);font-size:11px;padding:4px 10px;border-radius:10px;}
+
+    .must-try{padding:80px 48px;background:var(--maroon);}
+    .must-try .section-header h2{color:white;}
+    .must-try .section-label{color:var(--gold-light);}
+    .must-try .section-header p{color:rgba(255,255,255,0.75);}
+    .must-try-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto;}
+    .must-try-item{background:rgba(255,255,255,0.1);border-radius:16px;padding:24px;text-align:center;border:1px solid rgba(255,255,255,0.15);transition:background 0.2s;}
+    .must-try-item:hover{background:rgba(255,255,255,0.15);}
+    .must-try-icon{font-size:32px;margin-bottom:12px;}
+    .must-try-item h4{color:white;font-size:0.95rem;font-weight:700;margin-bottom:6px;}
+    .must-try-item p{color:rgba(255,255,255,0.65);font-size:0.82rem;line-height:1.5;}
+
+    footer{background:#1a0f0f;padding:56px 48px 32px;color:rgba(255,255,255,0.6);}
+    .footer-inner{max-width:1100px;margin:0 auto;}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,0.08);gap:48px;flex-wrap:wrap;}
+    .footer-brand p{font-size:0.88rem;margin-top:10px;max-width:260px;line-height:1.65;}
+    .footer-links h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white;margin-bottom:16px;}
+    .footer-links ul{list-style:none;}
+    .footer-links ul li{margin-bottom:10px;}
+    .footer-links ul li a{color:rgba(255,255,255,0.55);text-decoration:none;font-size:0.88rem;}
+    .footer-links ul li a:hover{color:var(--gold-light);}
+    .social-links{display:flex;gap:12px;margin-top:20px;}
+    .social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.7);text-decoration:none;transition:background 0.2s;}
+    .social-link:hover{background:var(--maroon);}
+    .footer-bottom{padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;}
+    
+    
+    @media(max-width:768px){nav{padding:0 20px;}.nav-links{display:none;}.section,.must-try{padding:56px 24px;}.food-grid{grid-template-columns:1fr;}.must-try-grid{grid-template-columns:1fr 1fr;}.footer-top{flex-direction:column;}}
+  </style>
+</head>
+<body>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span class="nav-logo-text">China Travel Buddy</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown"><a href="#">Services</a><div class="dropdown-menu"><a href="china-ready.html">China Ready — £19.90</a><a href="tailored-trip.html">Tailored Trip — £99</a><a href="signature-vip.html">Signature / VIP — £199</a><a href="compare.html">Compare Packages</a></div></li>
+    <li class="nav-dropdown"><a href="#" class="active">Guides</a><div class="dropdown-menu"><a href="destinations.html">Destinations</a><a href="daily-phrases.html">Daily Phrases</a><a href="food.html" style="color:var(--maroon);font-weight:600;">Food</a></div></li>
+    <li><a href="contact.html">Contact Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Get Your Plan</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-label">Food Guide</span>
+    <h1>A Culinary Journey<br>Through China</h1>
+    <p>Explore iconic flavours, regional specialties, and the dishes every traveller must try.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <div class="section-label">Regional Dishes</div>
+    <h2>Iconic Chinese Foods</h2>
+    <p>From delicate dim sum to fiery Sichuan hotpot, China's regional cuisines are endlessly diverse.</p>
+  </div>
+  <div class="food-grid">
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80" alt="Xiaolongbao"/><div class="food-category-badge">Classic Bites</div></div>
+      <div class="food-body"><div class="food-city">Shanghai</div><h3>Xiaolongbao (Soup Dumplings)</h3><p>Delicate steamed dumplings filled with minced pork and rich broth. The ultimate Shanghai street food experience — handle with care, they're full of hot soup!</p><div class="food-tags"><span class="food-tag">Steamed</span><span class="food-tag">Pork</span><span class="food-tag">Street food</span></div></div>
+    </div>
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?w=600&q=80" alt="Dim Sum"/><div class="food-category-badge">Light & Savory</div></div>
+      <div class="food-body"><div class="food-city">Guangzhou / Hong Kong</div><h3>Cantonese Dim Sum</h3><p>A beloved Cantonese tradition of small steamed and fried dishes served with tea. Har gow, siu mai, char siu bao — a leisurely weekend ritual not to be missed.</p><div class="food-tags"><span class="food-tag">Cantonese</span><span class="food-tag">Tea</span><span class="food-tag">Brunch</span></div></div>
+    </div>
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1534482421-64566f976cfa?w=600&q=80" alt="Hotpot"/><div class="food-category-badge">Spicy Cuisine</div></div>
+      <div class="food-body"><div class="food-city">Chengdu / Chongqing</div><h3>Sichuan Hotpot</h3><p>A communal feast of bubbling spiced broth where you cook your own ingredients. Famous for its numbing, fiery Sichuan peppercorn flavour — addictively delicious.</p><div class="food-tags"><span class="food-tag">Spicy</span><span class="food-tag">Communal</span><span class="food-tag">Sichuan</span></div></div>
+    </div>
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt="Peking Duck"/><div class="food-category-badge">Imperial Classic</div></div>
+      <div class="food-body"><div class="food-city">Beijing</div><h3>Peking Duck</h3><p>Crispy lacquered duck skin wrapped in thin pancakes with hoisin sauce and scallions. A Beijing institution with centuries of history, best enjoyed at a traditional restaurant.</p><div class="food-tags"><span class="food-tag">Roasted</span><span class="food-tag">Beijing</span><span class="food-tag">Must-try</span></div></div>
+    </div>
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=600&q=80" alt="Mapo Tofu"/><div class="food-category-badge">Sichuan Classic</div></div>
+      <div class="food-body"><div class="food-city">Chengdu</div><h3>Mapo Tofu</h3><p>Silky soft tofu in a deeply flavoured, numbing red chilli sauce with minced pork. One of China's most beloved comfort dishes — spicy, savoury, and unforgettable.</p><div class="food-tags"><span class="food-tag">Tofu</span><span class="food-tag">Spicy</span><span class="food-tag">Vegetarian option</span></div></div>
+    </div>
+    <div class="food-card">
+      <div class="food-img"><img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80" alt="Wonton Noodle"/><div class="food-category-badge">Noodle Dish</div></div>
+      <div class="food-body"><div class="food-city">Nationwide</div><h3>Wonton Noodle Soup</h3><p>Silky wontons stuffed with shrimp or pork in a clear, flavourful broth with springy noodles. A comforting classic found across China in countless regional variations.</p><div class="food-tags"><span class="food-tag">Soup</span><span class="food-tag">Noodles</span><span class="food-tag">Comfort food</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="must-try">
+  <div class="section-header">
+    <div class="section-label">Quick Tips</div>
+    <h2>Eating in China</h2>
+    <p>Essential things to know before you sit down to eat.</p>
+  </div>
+  <div class="must-try-grid">
+    <div class="must-try-item"><div class="must-try-icon">📱</div><h4>Scan to Order</h4><p>Many restaurants use QR codes to order food. Have WeChat ready to scan.</p></div>
+    <div class="must-try-item"><div class="must-try-icon">🌶️</div><h4>Spice Levels Vary</h4><p>Sichuan and Hunan cuisine can be very spicy. Ask "不要辣" (not spicy) if needed.</p></div>
+    <div class="must-try-item"><div class="must-try-icon">💰</div><h4>Cash is Rare</h4><p>Most restaurants accept Alipay or WeChat Pay only. Have your app set up before dining.</p></div>
+    <div class="must-try-item"><div class="must-try-icon">🥢</div><h4>Share Everything</h4><p>Chinese dining is communal — dishes are shared across the table. Order a variety!</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;"><img src="logo.jpg" alt="CTB Logo" style="width:40px;height:40px;border-radius:50%;object-fit:cover;"><span style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:white;">China Travel Buddy</span></div><p>Helping international travellers explore China with confidence.</p><div class="social-links"><a href="https://tiktok.com/@thechinatravelbuddy" class="social-link">𝕋</a><a href="https://instagram.com/thchinatravelbuddy" class="social-link">📷</a><a href="https://facebook.com/share/1DrjCf1k2H" class="social-link">f</a><a href="https://wa.me/message/U5L3CQI4L3LIL1" class="social-link">W</a><a href="https://linkedin.com/in/carol-lin-a28163389" class="social-link">in</a></div></div>
+      <div class="footer-links"><h4>Services</h4><ul><li><a href="china-ready.html">China Ready</a></li><li><a href="tailored-trip.html">Tailored Trip</a></li><li><a href="signature-vip.html">Signature / VIP</a></li></ul></div>
+      <div class="footer-links"><h4>Guides</h4><ul><li><a href="destinations.html">Destinations</a></li><li><a href="daily-phrases.html">Daily Phrases</a></li><li><a href="food.html">Food</a></li></ul></div>
+      <div class="footer-links"><h4>Contact</h4><ul><li><a href="/cdn-cgi/l/email-protection#e28b8c848da2968a87818a8b8c8396908394878e809786869bcc818d8f"><span class="__cf_email__" data-cfemail="066f68606946726e63656e6f686772746770636a647362627f2865696b">[email&#160;protected]</span></a></li><li><a href="tel:+8613857756190">+86 138 5775 6190</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 China Travel Buddy. All rights reserved.</span></div>
+  </div>
+</footer>
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('navbar');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = btn.parentElement;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Contact form
+  function handleSubmit(e) {
+    e.preventDefault();
+    var s = document.getElementById('form-success');
+    if (s) s.style.display = 'block';
+    e.target.reset();
+  }
+</script>
+</body>
+</html>
