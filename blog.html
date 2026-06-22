@@ -37,7 +37,9 @@ nav.scrolled{box-shadow:0 4px 24px rgba(107,45,45,0.12);}
 .blog-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(107,45,45,0.14);}
 .blog-card-img{position:relative;width:100%;height:220px;overflow:hidden;}
 .blog-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.3s;}
+.blog-card-img svg{width:100%;height:100%;display:block;transition:transform 0.3s;}
 .blog-card:hover .blog-card-img img{transform:scale(1.04);}
+.blog-card:hover .blog-card-img svg{transform:scale(1.04);}
 .blog-card-badge{position:absolute;top:16px;left:16px;background:var(--maroon);color:white;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:6px 14px;border-radius:20px;}
 .blog-card-body{padding:28px;display:flex;flex-direction:column;flex:1;}
 .blog-card-body h3{font-size:1.15rem;font-weight:700;line-height:1.4;margin-bottom:12px;color:var(--dark);}
@@ -91,7 +93,27 @@ footer{background:#1a0f0f;padding:56px 48px 32px;color:rgba(255,255,255,0.6);}
 <div class="blog-grid">
 <a href="blog/2026-04-13-buying-train-tickets-china-foreigners.html" class="blog-card">
 <div class="blog-card-img">
-<img src="https://images.pexels.com/photos/2916028/pexels-photo-2916028.jpeg?auto=compress&cs=tinysrgb&w=600" alt="How to Buy Train Tickets in China as a Foreigner"/>
+<svg viewBox="0 0 600 380" preserveAspectRatio="xMidYMid slice" role="img" aria-label="High-speed train travelling through China" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="csky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7a3636"/><stop offset="0.55" stop-color="#6B2D2D"/><stop offset="1" stop-color="#4e1f1f"/></linearGradient>
+<linearGradient id="ctrain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf6ea"/><stop offset="1" stop-color="#e8d5a3"/></linearGradient>
+</defs>
+<rect width="600" height="380" fill="url(#csky)"/>
+<circle cx="500" cy="92" r="46" fill="#c9a84c" opacity="0.9"/><circle cx="500" cy="92" r="64" fill="#c9a84c" opacity="0.18"/>
+<g fill="#4e1f1f" opacity="0.55"><rect x="30" y="150" width="30" height="110"/><rect x="68" y="120" width="24" height="140"/><rect x="100" y="170" width="36" height="90"/><rect x="146" y="138" width="22" height="122"/><rect x="430" y="158" width="30" height="102"/><rect x="468" y="130" width="24" height="130"/><rect x="540" y="150" width="28" height="110"/></g>
+<rect y="260" width="600" height="120" fill="#3a1212"/>
+<g stroke="#e8d5a3" stroke-width="5" stroke-linecap="round" opacity="0.5"><line x1="30" y1="214" x2="120" y2="214"/><line x1="14" y1="238" x2="96" y2="238"/></g>
+<g>
+<path d="M120 296 C 120 250 165 232 220 230 L 555 230 C 572 230 580 240 580 258 L 580 296 Z" fill="url(#ctrain)" stroke="#6B2D2D" stroke-width="3"/>
+<path d="M120 296 C 120 256 158 238 214 234 C 168 246 156 268 156 296 Z" fill="#c9a84c"/>
+<rect x="120" y="296" width="460" height="14" rx="4" fill="#6B2D2D"/>
+<rect x="220" y="248" width="320" height="34" rx="10" fill="#6B2D2D" opacity="0.85"/>
+<g fill="#9ad7e6" opacity="0.9"><rect x="232" y="254" width="64" height="22" rx="4"/><rect x="306" y="254" width="64" height="22" rx="4"/><rect x="380" y="254" width="64" height="22" rx="4"/><rect x="454" y="254" width="74" height="22" rx="4"/></g>
+<path d="M161 258 C 150 270 148 284 150 296 L 180 296 C 178 280 182 268 194 258 Z" fill="#1a1a1a" opacity="0.85"/>
+</g>
+<line x1="105" y1="318" x2="588" y2="318" stroke="#c9a84c" stroke-width="4" opacity="0.85"/>
+<g stroke="#8a3a3a" stroke-width="6"><line x1="150" y1="328" x2="170" y2="328"/><line x1="240" y1="328" x2="260" y2="328"/><line x1="330" y1="328" x2="350" y2="328"/><line x1="420" y1="328" x2="440" y2="328"/><line x1="510" y1="328" x2="530" y2="328"/></g>
+</svg>
 <span class="blog-card-badge">Transportation</span>
 </div>
 <div class="blog-card-body">
